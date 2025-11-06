@@ -19,6 +19,7 @@ USER appuser
 # Streamlit config - run on 0.0.0.0:8501 to be accessible in container
 EXPOSE 8501
 ENV STREAMLIT_SERVER_HEADLESS=true
+# Revisit
 ENV STREAMLIT_SERVER_ENABLE_CORS=false
 ENV STREAMLIT_SERVER_PORT=8501
 
