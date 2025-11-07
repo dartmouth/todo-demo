@@ -11,6 +11,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY app_dashboard.py .
+#COPY app.py .
 
 RUN groupadd -g 1005 appgroup && \
     useradd -u 1005 -g appgroup appuser && \
@@ -19,8 +20,7 @@ RUN groupadd -g 1005 appgroup && \
 USER appuser
 
 ENV STREAMLIT_SERVER_HEADLESS=true
-# Revisit
-ENV STREAMLIT_SERVER_PORT=80
+ENV STREAMLIT_SERVER_PORT=8501
 
 # Command to run the app
 CMD ["streamlit", "run", "app_dashboard.py"]
