@@ -5,6 +5,6 @@
 If you don't have Python installed, just install [uv](https://docs.astral.sh/uv/getting-started/installation/) and run
 
 ```bash
-uv run --with streamlit,python-dotenv,peewee,psycopg2,watchdog streamlit run app.py
+uv run --with streamlit,python-dotenv,peewee,watchdog streamlit run app.py
 ```
 
