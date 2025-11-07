@@ -49,7 +49,8 @@ if admin_url:
             parsed.params,
             parsed.query,
             parsed.fragment,
-            "sslmode=require"
+            "sslmode=require",
+            ""
         ))
 else:
     # Fall back to SQLite if no PostgreSQL URL provided
