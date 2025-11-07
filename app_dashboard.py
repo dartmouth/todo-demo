@@ -47,10 +47,8 @@ if admin_url:
             f"todos:{todos_password}@{parsed.netloc}",  # Use todos user and env password
             "/todos",
             parsed.params,
-            parsed.query,
-            parsed.fragment,
             "sslmode=require",
-            ""
+            parsed.fragment,
         ))
 else:
     # Fall back to SQLite if no PostgreSQL URL provided
