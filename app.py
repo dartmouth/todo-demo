@@ -43,11 +43,13 @@ def main():
     db_type = "PostgreSQL" if "postgres" in DATABASE_URL else "SQLite"
     st.caption(f"Using {db_type} database")
 
-    # Add new todo
-    todo_input = st.text_input("Enter a to-do item:")
-    if st.button("Add") and todo_input:
-        Todo.create(task=todo_input)
-        st.rerun()
+    # Add new todo using a form so pressing Enter will submit
+    with st.form("add_todo_form", clear_on_submit=True):
+        todo_input = st.text_input("Enter a to-do item:", placeholder="Type a to-do and press Enter")
+        submitted = st.form_submit_button("Add")
+        if submitted and todo_input:
+            Todo.create(task=todo_input)
+            st.rerun()
 
     # Display todos
     todos = Todo.select().order_by(Todo.id.desc())
@@ -57,9 +59,8 @@ def main():
 
     for todo in todos:
         col1, col2, col3 = st.columns([0.1, 0.7, 0.2])
-
-        # Checkbox for completion
-        completed = col1.checkbox("", value=todo.completed, key=f"check_{todo.id}")
+        # Checkbox for completion (provide an accessible label and hide it visually)
+        completed = col1.checkbox("Complete", value=todo.completed, key=f"check_{todo.id}", label_visibility="hidden")
         if completed != todo.completed:
             todo.completed = completed
             todo.save()
