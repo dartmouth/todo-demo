@@ -20,8 +20,7 @@ USER appuser
 
 ENV STREAMLIT_SERVER_HEADLESS=true
 # Revisit
-ENV STREAMLIT_SERVER_ENABLE_CORS=false
 ENV STREAMLIT_SERVER_PORT=80
 
 # Command to run the app
-CMD ["streamlit", "run", "app.py"]
+CMD ["streamlit", "run", "app_dashboard.py"]
