@@ -29,7 +29,7 @@ if admin_url:
     try:
         cursor.execute("CREATE USER todos WITH PASSWORD %s;", (todos_password,))
         print("User 'todos' created!")
-    except psycopg2.errors.DuplicateName:
+    except psycopg2.errors.DuplicateObject:
         print("User 'todos' already exists, updating password...")
         cursor.execute("ALTER USER todos WITH PASSWORD %s;", (todos_password,))
     
