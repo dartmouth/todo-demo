@@ -27,10 +27,11 @@ if admin_url:
     
     # Create user (ignore if already exists)
     try:
-        cursor.execute(f"CREATE USER todos WITH PASSWORD '{todos_password}';")
+        cursor.execute("CREATE USER todos WITH PASSWORD %s;", (todos_password,))
         print("User 'todos' created!")
     except psycopg2.errors.DuplicateName:
-        print("User 'todos' already exists")
+        print("User 'todos' already exists, updating password...")
+        cursor.execute("ALTER USER todos WITH PASSWORD %s;", (todos_password,))
     
     # Change schema owner
     cursor.execute("ALTER SCHEMA public OWNER TO todos;")
