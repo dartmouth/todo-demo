@@ -48,7 +48,8 @@ if admin_url:
             "/todos",
             parsed.params,
             parsed.query,
-            parsed.fragment
+            parsed.fragment,
+            "sslmode=require"
         ))
 else:
     # Fall back to SQLite if no PostgreSQL URL provided
