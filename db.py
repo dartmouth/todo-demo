@@ -20,7 +20,10 @@ class Todo(Model):
 
 def init_db():
     """Initialize database tables"""
-    db.connect()
+    # Only connect if not already connected
+    if db.is_closed():
+        db.connect()
+
     db.create_tables([Todo], safe=True)
     db_type = "PostgreSQL" if "postgres" in DATABASE_URL else "SQLite"
     print(f"Database initialized: {db_type}")
